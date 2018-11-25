@@ -1,0 +1,65 @@
+<apex:page doctype="HTML-5.0" sidebar="false" showheader="false" standardstylesheets="false"
+           controller="ShowPhotoController" cache="true">
+
+
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    </head>
+    <apex:form>
+        <body style="background-image:url('{!$Resource.background}');   background-repeat:no-repeat; background-size:cover;">
+        <apex:outputpanel id="main1" styleclass="col-md-12" style="margin-top:2%;margin-left:2%;margin-right:2%">
+            <apex:outputpanel id="main2" styleclass="col-md-1"/>
+            <apex:outputpanel id="main3" styleclass="col-md-10">
+                <apex:outputpanel layout="block" styleclass="panel panel-primary">
+                    <apex:outputpanel layout="block" styleclass="panel-heading">
+                        <h3 class="panel-title">Photo {!photo.Name__c}</h3>
+                    </apex:outputpanel>
+
+                    <apex:outputpanel layout="block" styleclass="panel-body" style="text-align:center;">
+                        <apex:image value="{!photo.Source__c}"/>
+                    </apex:outputpanel>
+                </apex:outputpanel>
+            </apex:outputpanel>
+            <apex:outputpanel id="main4" styleclass="col-md-1"/>
+        </apex:outputpanel>
+
+        <apex:outputpanel id="comments" styleclass="col-md-12" style="margin-top:2%;margin-left:2%;margin-right:2%">
+            <apex:outputpanel id="comments2" styleclass="col-md-1"/>
+            <apex:outputpanel id="comments3" styleclass="col-md-10">
+                <apex:outputpanel layout="block" styleclass="panel panel-primary">
+                    <apex:outputpanel layout="block" styleclass="panel-heading">
+                        <h3 class="panel-title">Comments</h3>
+                    </apex:outputpanel>
+                    <apex:pageBlock>
+                        <apex:pageBlockTable value="{!comments}" var="e" styleclass="table">
+                            <apex:column headervalue="Date" value="{!e.CreatedDate}"/>
+                            <apex:facet name="footer">
+                            </apex:facet>
+                            <apex:column headervalue="Text" value="{!e.Text__c}"/>
+                        </apex:pageBlockTable>
+                        <apex:outputpanel layout="block" id="comm" styleclass="col-md-12">
+                            <apex:outputpanel layout="block" id="comm1" styleclass="col-md-10">
+                                <apex:input type="text" styleclass="form-control"
+                                                 value="{!commText}"/>
+                            </apex:outputpanel>
+                            <apex:outputpanel layout="block" id="comm2" styleclass="col-md-1">
+                                <apex:commandbutton action="{!addComment}" value="Add"
+                                                    reRender="comments"
+                                                    styleclass="btn btn-primary"
+                                                    style="text-align:center"/>
+                            </apex:outputpanel>
+                        </apex:outputpanel>
+                    </apex:pageBlock>
+
+                </apex:outputpanel>
+            </apex:outputpanel>
+            <apex:outputpanel id="comments4" styleclass="col-md-1"/>
+        </apex:outputpanel>
+
+        </body>
+    </apex:form>
+</apex:page>

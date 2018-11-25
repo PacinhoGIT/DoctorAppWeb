@@ -1,0 +1,69 @@
+<apex:page title="Add Examination" doctype="HTML-5.0" sidebar="false" showheader="false" standardstylesheets="false"
+           controller="AddExamController">
+
+
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    </head>
+
+    <apex:form>
+        <body style="background-image:url('{!$Resource.background}');   background-repeat:no-repeat; background-size:cover;">
+
+        <apex:messages styleclass="alert alert-danger {!if(success,"succes","error")}" />
+
+        <!--<apex:outputpanel id="userStart" layout="block" styleclass="col-md-12">-->
+        <!--<apex:outputpanel id="user" layout="block" styleclass="col-md-4"/>-->
+        <!--</apex:outputpanel>-->
+        <!--<apex:outputpanel id="empty" layout="block" styleclass="col-md-6"/>-->
+        <!--<apex:outputpanel id="back" layout="block" styleclass="col-md-2">-->
+        <!--<apex:commandbutton action="{!back}" value="Back" styleclass="btn btn-success"/>-->
+        <!--</apex:outputpanel>-->
+
+        <apex:outputpanel layout="block" styleclass="panel panel-primary " style="margin-top:1%; margin-left:1%; margin-right:1%;">
+            <apex:outputpanel layout="block" styleclass="panel-heading"  style="text-align:left;">
+                <h3 class="panel-title">New Examination</h3>
+            </apex:outputpanel>
+
+            <apex:outputpanel layout="block" styleclass="panel-body" style="text-align:center;">
+                <apex:outputpanel id="patientsPanel">
+                    <apex:outputpanel id="fn" layout="block" styleclass="col-md-12" style="margin-top:10px;">
+                        Name
+                        <apex:inputField type="text" styleclass="form-control"
+                                         value="{!exam.Name__c}"/>
+                    </apex:outputpanel>
+                    <apex:outputpanel id="ln" layout="block" styleclass="col-md-12" style="margin-top:10px;">
+                        Description
+                        <apex:inputField type="text" styleclass="form-control"
+                                         value="{!exam.Description__c}"/>
+                    </apex:outputpanel>
+                    <apex:outputpanel id="Sace" layout="block" styleclass="col-md-12" style="margin-top:10px; text-align:center;" >
+                        <apex:commandbutton action="{!save}" value="Save" styleclass="btn btn-success"/>
+                    </apex:outputpanel>
+                </apex:outputpanel>
+
+            </apex:outputpanel>
+        </apex:outputpanel>
+
+        </body>
+    </apex:form>
+
+    <style>
+        .succes {
+            font-size: 15px;
+            font-weight: bold;
+            color: GREEN;
+        }
+
+        .error {
+            font-size: 15px;
+            font-weight: bold;
+            color: RED;
+        }
+
+    </style>
+
+</apex:page>

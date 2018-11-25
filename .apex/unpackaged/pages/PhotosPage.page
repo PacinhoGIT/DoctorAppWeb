@@ -1,0 +1,70 @@
+<apex:page title="Examination Photos" doctype="HTML-5.0" sidebar="false" showheader="false" standardstylesheets="false"
+           controller="PhotosController">
+
+
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    </head>
+
+    <apex:form>
+        <body style="background-image:url('{!$Resource.background}');   background-repeat:no-repeat; background-size:cover;">
+        <apex:outputpanel layout="block" styleclass="panel-heading"
+                          style="margin-top:1%; margin-left:1%; margin-right:1%; float:centre; ">
+            <apex:outputpanel id="userStart" layout="block" styleclass="col-md-12">
+                <apex:outputpanel id="user" layout="block" styleclass="col-md-4">
+                    <h3>
+                        <i class="fa fa-heartbeat"></i>
+                        Exam {!exam.Name}
+                    </h3>
+                </apex:outputpanel>
+                <apex:outputpanel id="empty" layout="block" styleclass="col-md-6"/>
+                <apex:outputpanel id="back" layout="block" styleclass="col-md-2">
+                    <apex:commandbutton action="{!back}" value="Back" styleclass="btn btn-success"/>
+                </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:outputpanel>
+
+        <apex:outputpanel id="patientsPanel" layout="block" styleclass="panel-heading"
+                          style="margin-top:1%; margin-left:1%; margin-right:1%; float:centre;">
+            <apex:pageBlock>
+                <apex:pageBlockTable value="{!photos}" var="p" styleclass="table">
+                    <apex:column headervalue="Date" value="{!p.CreatedDate}"/>
+                    <apex:column headervalue="System Name" value="{!p.Name}"/>
+                    <apex:column headervalue="Name" value="{!p.Name__c}"/>
+                    <apex:column headervalue="Description" value="{!p.Description__c}"/>
+                    <apex:column headervalue="Source" >
+                        <apex:outputpanel styleclass="col-md-6">
+                            <apex:outputpanel styleclass="col-md-6" >
+                                <apex:commandbutton action="{!show}" value="Show" reRender="patientsPanel" styleclass="btn btn-primary">
+                                    <apex:param id="selPhoto" name="selPhoto" value="{!p.Id}" assignTo="{!selectedPhoto}" />
+                                </apex:commandbutton>
+                            </apex:outputpanel>
+                        </apex:outputpanel>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputpanel>
+        </body>
+
+    </apex:form>
+
+    <style>
+        .succes {
+            font-size: 15px;
+            font-weight: bold;
+            color: GREEN;
+        }
+
+        .error {
+            font-size: 15px;
+            font-weight: bold;
+            color: RED;
+        }
+
+    </style>
+
+</apex:page>

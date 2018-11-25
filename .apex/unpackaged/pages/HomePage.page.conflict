@@ -1,0 +1,61 @@
+<apex:page doctype="HTML-5.0" sidebar="false" showheader="false" standardstylesheets="false"
+           controller="HomeController">
+
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css"></script>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    </head>
+
+    <apex:form >
+        <apex:outputpanel id="main" style="margin-top:2%; margin-left:1%; margin-right:1%;">
+            <apex:outputpanel style="margin-left:1%; margin-right:1%;" id="home">
+                <apex:outputpanel layout="block" styleclass="panel panel-succes " id="accordion"
+                                  style="margin-left:1%; margin-right:1%; ">
+                    <apex:outputpanel layout="block" styleclass="panel-heading"
+                                      style="margin-top:1%; margin-left:1%; margin-right:1%; float:centre; ">
+                        <h3>
+                            <a id="menu-toggle" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">
+                                <i class="glyphicon glyphicon-minus"></i>
+                                My Patients
+                            </a>
+                        </h3>
+                    </apex:outputpanel>
+                    <div id="collapseOne" class="panel-collapse collapse in "
+                         style="margin-top:1%; margin-left:1%; margin-right:1%; ">
+                        <apex:outputpanel id="patientsPanel">
+                            <apex:pageBlock >
+                                <apex:pageBlockTable value="{!patients}" var="patient" styleclass="table">
+                                    <apex:column headervalue="System Name" value="{!patient.Name}"/>
+                                    <apex:column headervalue="First Name" value="{!patient.First_Name__c}"/>
+                                    <apex:column headervalue="Last Name" value="{!patient.Last_name__c}"/>
+                                    <apex:column headervalue="Action" >
+                                        <apex:outputpanel styleclass="col-md-6">
+                                            <apex:outputpanel styleclass="col-md-2" >
+                                                <apex:commandbutton action="{!details}" value="Details" styleclass="btn btn-primary">
+                                                    <apex:param id="selectedCredit3" name="selectedCredit3" value="{!patient.Id}" assignTo="{!selectedPatient}" />
+                                                </apex:commandbutton>
+                                            </apex:outputpanel>
+                                            <apex:outputpanel styleclass="col-md-2" >
+                                                <apex:commandbutton action="{!deletePatient}" value="Delete" styleclass="btn btn-success">
+                                                    <apex:param id="deletePatient" name="deletePatient" value="{!patient.Id}" assignTo="{!selectedPatient}" />
+                                                </apex:commandbutton>
+                                            </apex:outputpanel>
+                                        </apex:outputpanel>
+                                    </apex:column>
+                                </apex:pageBlockTable>
+                            </apex:pageBlock>
+                        </apex:outputpanel>
+                    </div>
+                </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:outputpanel>
+    </apex:form>
+</apex:page>
